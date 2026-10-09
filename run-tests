@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+python="$root/.venv/bin/python"
+
+if [ ! -x "$python" ]; then
+    printf "%s\n" "Missing .venv/bin/python. Run $root/install first." >&2
+    exit 2
+fi
+
+cd "$root"
+exec "$python" -B -m unittest discover -s tests -v "$@"

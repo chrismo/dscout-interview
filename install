@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+python3 -m venv "$root/.venv"
+exec "$root/.venv/bin/python" -m pip install -r "$root/requirements.txt"
